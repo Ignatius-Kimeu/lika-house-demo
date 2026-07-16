@@ -97,7 +97,7 @@ p{ margin: 0 0 1em; }
 /* ---------- NAV ---------- */
 .site-nav{
   position: sticky; top:0; z-index: 500;
-  background: rgba(36,18,32,0.92);
+  background: var(--plum-ink);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -112,7 +112,8 @@ p{ margin: 0 0 1em; }
   color: var(--cream-dim); font-size:0.92rem; font-weight:560;
   padding: 10px 16px; border-radius: 999px; transition: background .2s, color .2s;
 }
-.nav-links a:hover, .nav-links a.active{ background: rgba(247,241,232,0.1); color: var(--cream); }
+.nav-links a.active{ background: var(--terracotta-btn); color: var(--cream); }
+.nav-links a:hover{ background: rgba(247,241,232,0.18); color: var(--cream); }
 .nav-cta{
   background: var(--terracotta-btn); color: var(--cream) !important;
   padding: 10px 20px; border-radius: 999px; font-weight:650;
@@ -315,7 +316,7 @@ section{ padding: 88px 0; }
 @media (max-width: 640px){ .gallery-grid{ columns: 2 160px; } }
 
 /* ---------- CONTACT ---------- */
-.contact-wrap{ display:grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.contact-wrap{ display:flex; flex-direction:column; gap: 28px; }
 .contact-card{ background: var(--paper-2); border-radius: var(--radius); padding: 30px; border:1px solid var(--line-dark); }
 .contact-row{ display:flex; align-items:flex-start; gap:16px; padding: 16px 0; border-bottom: 1px solid var(--line-dark); }
 .contact-row:last-child{ border-bottom:none; }
@@ -323,7 +324,7 @@ section{ padding: 88px 0; }
 .contact-row .label{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color: rgba(36,18,32,0.5); font-weight:650; margin-bottom:3px; }
 .contact-row .value{ font-size:0.98rem; }
 .map-embed{ border-radius: var(--radius); overflow:hidden; border:1px solid var(--line-dark); }
-.map-embed iframe{ width:100%; height:100%; min-height:340px; border:0; display:block; }
+.map-embed iframe{ width:100%; height:100%; min-height:440px; border:0; display:block; }
 .contact-actions{ display:grid; gap:12px; margin-top:22px; }
 
 /* ---------- FLOATING WHATSAPP ---------- */
@@ -703,6 +704,8 @@ footer small{ opacity:0.6; font-size:0.78rem; }
     navLinks.forEach(function(a){
       a.classList.toggle('active', a.getAttribute('data-nav') === key);
     });
+    var waFloat = document.querySelector('.wa-float');
+    if (waFloat) waFloat.style.display = (key === 'contact') ? 'none' : 'flex';
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
     var links = document.getElementById('navLinks');
     if(links) links.classList.remove('open');
